@@ -15,7 +15,7 @@ module Pod
       REGISTERED_DB = File.expand_path('~/.cocoapods/plugins/link/registered.json')
 
       #
-      # Defines the directory where per pod links are stored (e.g. from pod link <foo> command)
+      # Defines the path where per pod links are stored (e.g. from pod link <foo> command)
       # 
       LINKED_DB = File.expand_path('~/.cocoapods/plugins/link/linked.json')
 
@@ -23,7 +23,7 @@ module Pod
       # Register a pod for local development in the current working directory. This working
       # directory must have a .podspec defining the pod 
       # 
-      def self.register()
+      def self.register
         self.print "Registering '#{self.podspec.name}' > #{Dir.pwd}"
         self.write_db(REGISTERED_DB, self.registerd_db, {
           self.podspec.name => {
@@ -35,7 +35,7 @@ module Pod
       #
       # Unregister a pod
       # 
-      def self.unregister()
+      def self.unregister
        self.print "Unregistering '#{self.podspec.name}' > #{Dir.pwd}"
         db = self.registerd_db
         db.delete(self.podspec.name)
@@ -47,6 +47,7 @@ module Pod
       # using `pod link`
       # 
       # @param pod the name of the pod to link into the current project 
+      # 
       def self.link(pod)
         # only allow registered links to be used
         registered_link = self.get_registered_link pod
@@ -146,7 +147,7 @@ module Pod
       end
 
       #
-      # Prints a message
+      # Prints a formatted message with the Pod Links prefix
       # 
       def self.print(message)
         UI.puts("Pod #{'Links'.cyan} #{message}")
