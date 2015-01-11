@@ -40,35 +40,35 @@ When the link is no longer necessary, simply remove it with `pod unlink <name>`.
 
 ## Usage
 
-### Register
+#### Register
 To register a pod for local development linking:
 
 ```bash
 pod link
 ```
 
-### Unregister
+#### Unregister
 To unregister a pod:
 
 ```bash
 pod unlink
 ```
 
-### Link
+#### Link
 To link a pod for use in another pod project:
 
 ```bash
 pod link <name>
 ```
 
-### Unlink
+#### Unlink
 To unlink a pod from a pod project:
 
 ```bash
 pod unlink <name>
 ```
 
-### List
+#### List
 To list all registered pods
 
 ```bash
@@ -81,10 +81,6 @@ To list all linked pods in a pod project:
 pod list links --linked
 ```
 
-## Credits
-
-This CocoaPods plugin was created by Mike Owens
-
-## License
+### License
 
 cocoapods-links is released under the MIT license. See [LICENSE](LICENSE).
