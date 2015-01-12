@@ -147,6 +147,21 @@ module Pod
       end
 
       #
+      # Get list of pods that are linked for the current pod project
+      # 
+      # @return an array of installed links
+      # 
+      def self.installed_links
+        installed = []
+        self.linked_pods.each do |pod|
+          unless self.get_registered_link(pod).nil?
+            installed.append(pod)
+          end
+        end
+        return installed
+      end
+
+      #
       # Prints a formatted message with the Pod Links prefix
       # 
       def self.print(message)
