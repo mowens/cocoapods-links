@@ -15,7 +15,13 @@ module Pod
         # via the link instead of the provided requirements (e.g. it will setup local pod development
         # for the link). If the link does not exist, then the pod will be installed normally
         # 
-        link = Pod::Command::Links.get_link(name)
+        
+        # handle subspec link
+        linked_name = name
+        if name.include? "/"
+          linked_name = name.split("/")[0]
+        end
+        link = Pod::Command::Links.get_link(linked_name)
         unless link.nil?
           Pod::Command::Links.print "Using link '#{name}' > #{link['path']}"
           real_pod(name, :path => link['path'], &block)

@@ -175,6 +175,9 @@ module Pod
     # @returns the merged hash replacing any links that were added with their previous value
     # 
     def merge_hashes(links, before, after)
+      if before.nil?
+        return after
+      end
       links.each do |link|
         if before.has_key?(link)
           after[link] = before[link]
