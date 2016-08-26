@@ -14,8 +14,8 @@ module Pod
         # Lookup a link for the given pod name. If a link exists then the pod will be installed
         # via the link instead of the provided requirements (e.g. it will setup local pod development
         # for the link). If the link does not exist, then the pod will be installed normally
-        # 
-        
+        #
+
         # handle subspec link
         linked_name = name
         if name.include? "/"
