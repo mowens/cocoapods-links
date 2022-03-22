@@ -69,7 +69,7 @@ module Pod
         })
 
         # install pod from link
-        Pod::Command::Install.run(CLAide::ARGV.new ["--no-repo-update"])
+        Pod::Command::Install.run(["--no-repo-update"])
       end
 
       #
@@ -101,7 +101,7 @@ module Pod
           end
 
           # install pod from repo
-          Pod::Command::Install.run(CLAide::ARGV.new [])
+          Pod::Command::Install.run([])
         end
       end
 
