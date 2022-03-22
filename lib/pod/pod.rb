@@ -23,8 +23,19 @@ module Pod
         end
         link = Pod::Command::Links.get_link(linked_name)
         unless link.nil?
-          Pod::Command::Links.print "Using link '#{name}' > #{link['path']}"
-          real_pod(name, :path => link['path'], &block)
+          message = "Using link '#{name}' > #{link['path']}"
+          new_requirements = [:path => link['path']]
+
+          # Parsing inspired from CocoaPods's `parse_subspecs` method
+          # https://github.com/CocoaPods/Core/blob/master/lib/cocoapods-core/podfile/target_definition.rb#L1152
+          options = requirements.last
+          if options.is_a?(Hash) && options.has_key?(:subspecs)
+            message += " with subspecs: #{options[:subspecs]}"
+            new_requirements.append(:subspecs => options[:subspecs])
+          end
+
+          Pod::Command::Links.print message
+          real_pod(name, *new_requirements, &block)
         else
           real_pod(name, *requirements, &block)
         end
